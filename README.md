@@ -5,8 +5,7 @@ A small DNS server built for the CodeCrafters
 challenge. It parses and builds DNS messages on the wire, answers `A` queries, handles
 name compression in incoming packets, and can run as a forwarding resolver.
 
-All 8 stages pass. Latest commit: run `git log -1 --format=%H` (see bottom of this file
-for the value recorded at completion).
+All 8 stages pass. Completion commit: `2ab65033e51333081de050b05447e636a59b6b1e`.
 
 ## Features
 
@@ -79,5 +78,4 @@ dig @127.0.0.1 -p 2053 +noedns codecrafters.io
 
 ---
 
-Completion commit: `see git log` · Challenge status: **completed** (stages
-ux2, tz1, bf2, xm2, uc8, hd8, yc9, gt1).
+Challenge status: **completed** (stages ux2, tz1, bf2, xm2, uc8, hd8, yc9, gt1).
