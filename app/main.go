@@ -40,5 +40,29 @@ func main() {
 
 // handle parses a raw DNS request and produces a raw DNS response.
 func handle(request []byte) []byte {
-	return []byte{}
+	req, err := UnmarshalMessage(request)
+	if err != nil {
+		fmt.Println("Failed to parse request:", err)
+		return nil
+	}
+
+	resp := Message{Header: buildResponseHeader(req.Header)}
+	return resp.Marshal()
+}
+
+// buildResponseHeader derives a response header from the request header,
+// mirroring ID, OPCODE and RD as a real resolver would.
+func buildResponseHeader(q Header) Header {
+	h := Header{
+		ID:     q.ID,
+		QR:     true,
+		OpCode: q.OpCode,
+		RD:     q.RD,
+	}
+	if q.OpCode == 0 {
+		h.RCode = 0
+	} else {
+		h.RCode = 4 // Not Implemented
+	}
+	return h
 }
