@@ -50,6 +50,15 @@ func handle(request []byte) []byte {
 		Header:    buildResponseHeader(req.Header),
 		Questions: req.Questions,
 	}
+	for _, q := range req.Questions {
+		resp.Answers = append(resp.Answers, ResourceRecord{
+			Name:  q.Name,
+			Type:  TypeA,
+			Class: ClassIN,
+			TTL:   60,
+			Data:  ipv4RData("8.8.8.8"),
+		})
+	}
 	return resp.Marshal()
 }
 
