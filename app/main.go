@@ -46,7 +46,10 @@ func handle(request []byte) []byte {
 		return nil
 	}
 
-	resp := Message{Header: buildResponseHeader(req.Header)}
+	resp := Message{
+		Header:    buildResponseHeader(req.Header),
+		Questions: req.Questions,
+	}
 	return resp.Marshal()
 }
 
